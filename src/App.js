@@ -1,17 +1,21 @@
+import { useState } from 'react';
 import './App.css';
 import BasicForm from './components/BasicForm';
 import { questions } from './content/questions'
 
 function App() {
+  const [currQuestion, setCurrQuestion] = useState(0)
   return (
     <div className="App">
       {
-        questions.map(question => {
-          return (
-            <BasicForm question={question} />
-          )
-        })
+        currQuestion < questions.length ? 
+          <BasicForm question={questions[currQuestion]} />
+        :
+        <span>Thank you for your answers</span>
       }
+      
+
+      <button onClick={() => setCurrQuestion(currQuestion + 1)}>Next</button>
     </div>
   );
 }
