@@ -1,3 +1,32 @@
+@keyframes slide {
+    0% {
+        margin-left: 0;
+        opacity: 1;
+    }
+
+    50% {
+        margin-left: -100vw;
+        opacity: 0;
+    }
+    
+    70% {
+        margin-left: 0;
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0.3;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }   
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -12,5 +41,5 @@
 }
 
 .animate {
-    color: red;
+    animation: slide 1.5s;
 }
