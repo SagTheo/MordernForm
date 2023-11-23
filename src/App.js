@@ -18,9 +18,11 @@ function App() {
         <span>Thank you for your answers</span>
       } 
 
-      <button onClick={() => {
-        setCurrQuestion(currQuestion + 1) 
+      <button onClick={() => { 
         setAnimate(true)
+        setTimeout(() => {
+          setCurrQuestion(currQuestion + 1)
+        }, 200)
         setTimeout(() => {
           setAnimate(false)
         }, 1500)
