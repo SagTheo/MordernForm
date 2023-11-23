@@ -6,19 +6,38 @@ import { questions } from './content/questions'
 function App() {
   const [currQuestion, setCurrQuestion] = useState(0)
   const [animate, setAnimate] = useState(false)
+  const [userInput, setUserInput] = useState('')
+  const [answers, setAnswers] = useState([])
 
   return (
     <div className="App">
       {
         currQuestion < questions.length ?
           <BasicForm question={questions[currQuestion]}
-                  animate={animate} 
+                     animate={animate} 
+                     userInput={userInput}
+                     setUserInput={setUserInput}
           />
         :
-        <span>Thank you for your answers</span>
+        <div>
+          <span>Your answers:</span> 
+          <ul>
+          {
+            answers.map(answer => {
+              return (
+                <li>{answer}</li>
+              )
+            })
+          }
+          </ul>
+        </div>
       } 
 
-      <button onClick={() => { 
+      <button onClick={() => {
+        if (userInput !== '') {
+          setAnswers([...answers, userInput])
+          setUserInput('')
+        }
         setAnimate(true)
         setTimeout(() => {
           setCurrQuestion(currQuestion + 1)
