@@ -19,7 +19,7 @@ function App() {
                      setUserInput={setUserInput}
           />
         :
-        <div>
+        <div className='answers'>
           <span>Your answers:</span> 
           <ul>
           {
@@ -45,7 +45,9 @@ function App() {
         setTimeout(() => {
           setAnimate(false)
         }, 1500)
-      }}>Next</button>
+      }}
+            className='nextButton'
+      >Next</button>
     </div>
   );
 }
