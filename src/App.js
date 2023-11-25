@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import BasicForm from './components/BasicForm';
 import { questions } from './content/questions'
 
 function App() {
+  const [putFocus, setPutFocus] = useState()
   const [currQuestion, setCurrQuestion] = useState(0)
   const [animate, setAnimate] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [answers, setAnswers] = useState([])
+
+  useEffect(() => {
+    setPutFocus(document.querySelector('.putFocus'))
+  }, [])
+
+  useEffect(() => {
+    if (putFocus) {
+      putFocus.focus()
+    }
+  }, [putFocus])
 
   return (
     <div className="App">
@@ -44,6 +55,7 @@ function App() {
         }, 200)
         setTimeout(() => {
           setAnimate(false)
+          putFocus.focus()
         }, 1500)
       }}
             className='nextButton'

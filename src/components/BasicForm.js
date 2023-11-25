@@ -8,7 +8,7 @@ const BasicForm = ({ question, animate, userInput, setUserInput }) => {
         <input type='text' 
                value={userInput} 
                onChange={e => setUserInput(e.target.value)}
-               className={styles.input} />
+               className={`${styles.input} putFocus`} />
     </div>
   )
 }
