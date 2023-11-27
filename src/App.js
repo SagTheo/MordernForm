@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import styles from './App.module.css'
 import BasicForm from './components/BasicForm';
 import { questions } from './content/questions'
 
@@ -21,7 +21,7 @@ function App() {
   }, [putFocus])
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       {
         currQuestion < questions.length ?
           <BasicForm question={questions[currQuestion]}
@@ -30,25 +30,31 @@ function App() {
                      setUserInput={setUserInput}
           />
         :
-        <div className='answers'>
+        <div className={styles.answers}>
           <span>Your answers:</span> 
-          <ul>
+          <div>
           {
-            answers.map(answer => {
+            answers.map((answer, index) => {
               return (
-                <li>{answer}</li>
+                <div className={styles.questionAndAnswer}>
+                  <span>{questions[index]}</span>
+                  <span>{answer}</span>
+                </div>
               )
             })
           }
-          </ul>
+          </div>
         </div>
       } 
 
       <button onClick={() => {
-        if (userInput !== '') {
+        if (userInput === '') {
+          setAnswers([...answers, 'No answer given'])
+        } else {
           setAnswers([...answers, userInput])
           setUserInput('')
         }
+        
         setAnimate(true)
         setTimeout(() => {
           setCurrQuestion(currQuestion + 1)
@@ -58,7 +64,7 @@ function App() {
           putFocus.focus()
         }, 1500)
       }}
-            className='nextButton'
+            className={styles.nextButton}
       >Next</button>
     </div>
   );
