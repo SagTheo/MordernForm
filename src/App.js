@@ -9,6 +9,7 @@ function App() {
   const [animate, setAnimate] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [answers, setAnswers] = useState([])
+  const [disabled, setDisabled] =useState(false)
 
   useEffect(() => {
     setPutFocus(document.querySelector('.putFocus'))
@@ -58,13 +59,17 @@ function App() {
         setAnimate(true)
         setTimeout(() => {
           setCurrQuestion(currQuestion + 1)
+          if (currQuestion === questions.length - 1) {
+            setDisabled(true)
+          }
         }, 200)
         setTimeout(() => {
           setAnimate(false)
           putFocus.focus()
         }, 1500)
       }}
-            className={styles.nextButton}
+            className={`${styles.nextButton} ${disabled ? styles.nextBtnOff : null}`}
+            disabled={disabled}
       >Next</button>
     </div>
   );
