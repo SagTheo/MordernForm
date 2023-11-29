@@ -62,7 +62,7 @@ function App() {
           if (currQuestion === questions.length - 1) {
             setDisabled(true)
           }
-        }, 200)
+        }, 1000)
         setTimeout(() => {
           setAnimate(false)
           putFocus.focus()
