@@ -9,7 +9,8 @@ function App() {
   const [animate, setAnimate] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [answers, setAnswers] = useState([])
-  const [disabled, setDisabled] =useState(false)
+  const [disabled, setDisabled] = useState(false)
+  const [displayNextBtn, setDisplayNextBtn] = useState(true)
 
   useEffect(() => {
     setPutFocus(document.querySelector('.putFocus'))
@@ -49,6 +50,7 @@ function App() {
       } 
 
       <button onClick={() => {
+        setDisabled(true)
         if (userInput === '') {
           setAnswers([...answers, 'No answer given'])
         } else {
@@ -61,14 +63,16 @@ function App() {
           setCurrQuestion(currQuestion + 1)
           if (currQuestion === questions.length - 1) {
             setDisabled(true)
+            setDisplayNextBtn(false)
           }
         }, 1000)
         setTimeout(() => {
           setAnimate(false)
+          setDisabled(false)
           putFocus.focus()
         }, 1500)
       }}
-            className={`${styles.nextButton} ${disabled ? styles.nextBtnOff : null}`}
+            className={`${styles.nextButton} ${disabled ? styles.nextBtnOff : null} ${displayNextBtn ? null : styles.hideNextBtn}`}
             disabled={disabled}
       >Next</button>
     </div>
